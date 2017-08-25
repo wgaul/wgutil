@@ -13,7 +13,6 @@
 The DESCRIPTION file:
 \packageDESCRIPTION{wgutil}
 \packageIndices{wgutil}
-~~ An overview of how to use the package, including the most important functions ~~
  This package is an assortment of functions that I frequently find useful. 
 }
 \author{
@@ -22,7 +21,6 @@ The DESCRIPTION file:
 Maintainer: \packageMaintainer{wgutil}
 }
 \references{
-~~ Literature or other references for background information ~~
 }
 
 \keyword{ package }
@@ -31,5 +29,4 @@ Maintainer: \packageMaintainer{wgutil}
 ~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
 }
 \examples{
-~~ simple examples of the most important functions ~~
 }
