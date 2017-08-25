@@ -1,0 +1,10 @@
+Package: wgutil
+Type: Package
+Title: Willson's miscellanious functions
+Version: 1.0
+Date: 2017-08-25
+Author: Willson Gaul
+Maintainer: Willson Gaul <wgaul@hotmail.com>
+Description: Random functions to do things that I commonly do in analyzing ecological data. 
+Suggests: ggplot2 
+License: GPL-3
