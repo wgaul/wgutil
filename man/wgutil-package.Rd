@@ -11,8 +11,8 @@
 \details{
 
 The DESCRIPTION file:
-\packageDESCRIPTION{wgutil}
-\packageIndices{wgutil}
+ \packageDESCRIPTION{wgutil}
+ \packageIndices{wgutil}
  This package is an assortment of functions that I frequently find useful. 
 }
 \author{
