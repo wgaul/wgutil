@@ -6,6 +6,7 @@ Date: 2017-08-25
 Author@R: as.person(c("Willson Gaul <wgaul@hotmail.com> [aut, cre]"))
 Maintainer: Willson Gaul <wgaul@hotmail.com>
 Description: Random functions to do things that I commonly do in analyzing ecological data. 
-Depends: R (>=3.1.1)
+Depends: 
+ R (>= 3.1.1)
 Suggests: ggplot2 
 License: GPL-3
