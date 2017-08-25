@@ -6,19 +6,17 @@
 \packageTitle{wgutil}
 }
 \description{
-\packageDescription{wgutil}
+ \packageDescription{wgutil}
 }
 \details{
-
-The DESCRIPTION file:
+ The DESCRIPTION file:
  \packageDESCRIPTION{wgutil}
  \packageIndices{wgutil}
  This package is an assortment of functions that I frequently find useful. 
 }
 \author{
-\packageAuthor{wgutil}
-
-Maintainer: \packageMaintainer{wgutil}
+ \packageAuthor{wgutil} 
+ Maintainer: \packageMaintainer{wgutil}
 }
 \references{
 }

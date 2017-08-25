@@ -6,6 +6,13 @@
 ## last modified: 24 August 2017
 ###################################
 
+pa <- function(x){ 
+  # function to convert to presence / absence
+  # ARGS: x: a dataframe or vector with numeric values to be converted to 0 or 1.
+  x[x > 0] <- 1
+  x
+}
+
 make_name <- function(number, prefix) {
   # function to create names by assigning a prefix and a number
   # ARGS: prefix: character string type identifier (e.g. "hec" or "site")
