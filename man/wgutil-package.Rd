@@ -9,13 +9,16 @@
  \packageDescription{wgutil}
 }
 \details{
+ This package is an assortment of functions that I frequently find useful. 
+ 
  The DESCRIPTION file:
  \packageDESCRIPTION{wgutil}
  \packageIndices{wgutil}
- This package is an assortment of functions that I frequently find useful. 
+
 }
 \author{
  \packageAuthor{wgutil} 
+ 
  Maintainer: \packageMaintainer{wgutil}
 }
 \references{
