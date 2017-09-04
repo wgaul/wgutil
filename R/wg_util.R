@@ -70,3 +70,15 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
     }
   }
 }
+
+## Grid Ref to hectad
+gridref_to_hec <- function(GR = "NULL") {
+  # convert a grid ref (letter form) of any precision to hectad (3 characters)
+  # ARGS: GR = character string giving the grid reference (e.g. "B1641", "B161415)
+  # VALUE: a character string giving the 3-character hectad grid ref (e.g. "B14")
+  if(is.null(GR) || !is.character(GR)) {
+    stop("Provide a character string to 'GR'.")
+  }
+  
+  
+}
