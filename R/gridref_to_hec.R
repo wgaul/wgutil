@@ -10,20 +10,20 @@
 ###################################
 
 ## Grid Ref to hectad
-gridref_to_hec <- function(GR = "NULL") {
+gridref_to_hec <- function(gr = "NULL") {
   # convert a grid ref (letter form) of any precision to hectad (3 characters)
-  # ARGS: GR = character string giving the grid reference (e.g. "B1641", "B161415)
+  # ARGS: gr = character string giving the grid reference (e.g. "B1641", "B161415)
   # VALUE: a character string giving the 3-character hectad grid ref (e.g. "B14")
-  if(is.null(GR) || !is.character(GR)) {
-    stop("Provide a character string to 'GR'.")
+  if(is.null(gr) || !is.character(gr)) {
+    stop("Provide a character string to 'gr'.")
   }
 
-  parts <- unlist(strsplit(GR, NULL))
+  parts <- unlist(strsplit(gr, NULL))
   nums <- grep("[[:digit:]]", parts, value = T)
   letters <- paste0(grep("[[:alpha:]]", parts, value = T), collapse = "")
   n <- length(nums)
   
-  if(nchar(GR)/2 == 0) {
+  if(nchar(gr)/2 == 0) {
     stop("Original grid ref should have an even number of characters after the letter(s).")
   }
 
