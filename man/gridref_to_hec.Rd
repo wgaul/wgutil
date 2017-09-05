@@ -15,7 +15,7 @@ gridref_to_hec(gr)
 }
 }
 \details{
-  Extra digits are removed by string matching using \code{\link{grep}} and \link{regular_expression}.
+  Extra digits are removed by string matching using \code{\link{grep}} and \link{regular expression}.
 }
 \value{
   gridref_to_hec(gr) returns a character string with the letter(s) of the original grid reference, followed by a single digit for each of eastings and northings.
@@ -31,17 +31,12 @@ Willson Gaul
 }
 
 \seealso{
-\code{\link{grep}}, \code{\link{regular_expression}}
+\code{\link{grep}}, \code{\link{regular expression}}
 }
 \examples{
 ref <- "B161415"
 hectad <- gridref_to_hec(ref)
 
-## The function is currently defined as
-function (x) 
-{
-  }
-}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
