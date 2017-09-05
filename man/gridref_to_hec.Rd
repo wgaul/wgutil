@@ -1,17 +1,17 @@
 \name{gridref_to_hec}
 \alias{gridref_to_hec}
 \title{
-  Function to convert a grid ref (letter form) of any precision to hectad (3 characters)
+  Function to convert Grid References (letter form) of any precision to hectad (3 characters)
 }
 \description{
-  This function takes an Irish or British Grid reference (letter form) of any precision and returns a grid reference at hectad precision.  So, the input grid ref can have any number of digits (e.g. "B161415"), and this function will produce the corresponding grid reference with only 2 digits, one each for eastings and northings (e.g. "B14").
+  This function takes Irish or British Grid references (letter form) of any precision and returns grid references at hectad precision.  So, the input grid refs can have any number of digits (e.g. "B161415"), and this function will produce the corresponding grid references with only 2 digits, one each for eastings and northings (e.g. "B14").
 }
 \usage{
 gridref_to_hec(gr)
 }
 \arguments{
   \item{gr}{
-    A character vector giving the original Irish or British grid reference (letter form) (e.g. "B161415").
+    A character vector giving the original Irish or British grid reference (letter form) (e.g. "B161415" or c("B161415", "C1425")).
 }
 }
 \details{
