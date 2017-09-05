@@ -15,7 +15,7 @@ gridref_to_hec(gr)
 }
 }
 \details{
-  Extra digits are removed by string matching using \code{\link{grep}} and \link{regular expression}.
+  Extra digits are removed by string matching using \code{\link{grep}} and \link{regex}.
 }
 \value{
   gridref_to_hec(gr) returns a character string with the letter(s) of the original grid reference, followed by a single digit for each of eastings and northings.
