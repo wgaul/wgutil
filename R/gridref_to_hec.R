@@ -6,14 +6,14 @@
 ##
 ## author: Willson Gaul (and others as indicated)
 ## created: 4 Sep 2017
-## last modified: 5 Sep 2017
+## last modified: 13 Sep 2017
 ###################################
 
 ## Grid Ref to hectad
 gridref_to_hec <- function(gr = NULL) {
   # convert a grid ref (letter form) of any precision to hectad (3 characters)
-  # ARGS: gr = character string giving the grid reference (e.g. "B1641", "B161415)
-  # VALUE: a character string giving the 3-character hectad grid ref (e.g. "B14")
+  # ARGS: gr = character vector giving the grid references (e.g. "B1641", "B161415)
+  # VALUE: a character vector giving the 3-character hectad grid refs (e.g. "B14")
   # 
   # TODO: eventually vectorize this using C++?
   #
@@ -44,6 +44,8 @@ gridref_to_hec <- function(gr = NULL) {
     } 
     
     result[i] <- hec
+    # clean value of hec in case next element in gr is a length-0 string
+    hec <- NA 
   }
   # return a vector of hectad codes in the form of letter(s) followed by 1 
   # digit each for eastings and northings
