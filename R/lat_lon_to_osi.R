@@ -44,9 +44,9 @@
 #'   longitude columns.
 #' @param orig_crs A character string giving the proj4string specifying the
 #'   coordinate reference system that the original lat/lon coordinates are in.
-#' @param precision_meters Integer giving the desired precision of results
+#' @param precision Integer giving the desired precision (in meters) of results
 lat_lon_to_osi <- function(x, lat = "Latitude", lon = "Longitude",
-                           orig_crs = NULL, precision_meters = 1) {
+                           orig_crs = NULL, precision = 1) {
   if (!requireNamespace("sp", quietly = T)) {
     stop("Package sp needed for this function to work.  Please install it.",
          call. = F)
@@ -65,9 +65,9 @@ lat_lon_to_osi <- function(x, lat = "Latitude", lon = "Longitude",
 
   # truncate results to the desired precision
   conv_points@coords[, 1] <- conv_points@coords[, 1] -
-    conv_points@coords[, 1]%%precision_meters
+    conv_points@coords[, 1]%%precision
   conv_points@coords[, 2] <- conv_points@coords[, 2] -
-    conv_points@coords[, 2]%%precision_meters
+    conv_points@coords[, 2]%%precision
 
   conv_points <- as.data.frame(conv_points)
   conv_points

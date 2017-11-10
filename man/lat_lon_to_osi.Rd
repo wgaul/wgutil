@@ -5,7 +5,7 @@
 \title{Convert WGS84 lat/long to OSI TM75 eastings/northings.}
 \usage{
 lat_lon_to_osi(x, lat = "Latitude", lon = "Longitude", orig_crs = NULL,
-  precision_meters = 1)
+  precision = 1)
 }
 \arguments{
 \item{x}{A data frame containing latitude and longitude coordinates.}
@@ -16,7 +16,7 @@ longitude columns.}
 \item{orig_crs}{A character string giving the proj4string specifying the
 coordinate reference system that the original lat/lon coordinates are in.}
 
-\item{precision_meters}{Integer giving the desired precision of results}
+\item{precision}{Integer giving the desired precision (in meters) of results}
 }
 \description{
 Convert latitude/longitude to eastings and northings on the Irish OSI TM75
