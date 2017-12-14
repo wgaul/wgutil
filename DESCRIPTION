@@ -1,23 +1,11 @@
 Package: wgutil
-Type: Package
-Title: Willson's Ecological Data Analysis Functions
+Title: What the Package Does (one line, title case)
 Version: 0.0.0.9000
-Date: 2017-08-25
-Authors@R: person("Willson", "Gaul", email = "wgaul@hotmail.com", 
-    role = c("aut", "cre"))
-Maintainer: Willson Gaul <wgaul@hotmail.com>
-Description: Assorted functions to do things that I commonly do in analyzing 
-    ecological data. Some of these functions are specifically for working with 
-    data recorded at the hectad or 1km block scale.  Some functions in this 
-    package are drawn directly from other people's work, including from Cookbook
-    for R by Winston Chang.
-BugReports: https://github.com/wgaul/wgutil/issues
-Depends:
-    R (>= 3.1.1)
-Suggests: 
-    ggplot2,
-    rgdal, 
-    sp
-License: GPL-3
-Imports: 
+Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+Depends: R (>= 3.4.3)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
 RoxygenNote: 6.0.1
+Suggests: ggplot2

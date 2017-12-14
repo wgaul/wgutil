@@ -22,6 +22,8 @@
 #' \code{\link{rgdal}}, \code{\link[sp]{proj4string}},
 #' \url{http://spatialreference.org/ref/epsg/tm75-irish-grid/}
 #'
+#' @export
+#'
 #' @examples
 #' set.seed(500)
 #' df <- data.frame(site = c("A", "B", "C", "D", "E"),

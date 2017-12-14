@@ -1,12 +1,16 @@
 #' Convert to presence / absence
+#'
+#' @export
+#'
 #' @param x a dataframe or vector with numeric values to be converted to 0 or 1.
 pa <- function(x){
   x[x > 0] <- 1
   x
 }
 
-
 #' Create names by assigning a prefix and a number
+#'
+#' @export
 #'
 #' @examples
 #' lapply(1:5, FUN = make_name, prefix = "species")
@@ -15,24 +19,27 @@ pa <- function(x){
 #' @param prefix character string type identifier (e.g. "hec" or "site")
 #' (integer won't work to start character string name)
 make_name <- function(suffix, prefix) {
-  name <- paste(prefix, number, sep = "")
+  name <- paste(prefix, suffix, sep = "")
   name
 }
 
 
 
-## Multiple plot function
-# from Cookbook for R
-# http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/
-#
-# ggplot objects can be passed in ..., or to plotlist (as a list of ggplot objects)
-# - cols:   Number of columns in layout
-# - layout: A matrix specifying the layout. If present, 'cols' is ignored.
-#
-# If the layout is something like matrix(c(1,2,3,3), nrow=2, byrow=TRUE),
-# then plot 1 will go in the upper left, 2 will go in the upper right, and
-# 3 will go all the way across the bottom.
-#
+#' Multiple plot function from Cookbook for R
+#'
+#' @export
+#'
+#' @param ... ggplot objects can be passed in ..., or to plotlist (as a list of
+#'   ggplot objects)
+#' @param plotlist optional a list of ggplot objects
+#' @param cols Number of columns in layout
+#' @param layout A matrix specifying the layout. If present, 'cols' is ignored.
+#'
+#' @seealso \url{http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/}
+#'
+#' If the layout is something like matrix(c(1,2,3,3), nrow=2, byrow=TRUE),
+#' then plot 1 will go in the upper left, 2 will go in the upper right, and
+#' 3 will go all the way across the bottom.
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   library(grid)
 
