@@ -6,17 +6,20 @@
 ## last modified: 24 August 2017
 ###################################
 
-pa <- function(x){ 
-  # function to convert to presence / absence
-  # ARGS: x: a dataframe or vector with numeric values to be converted to 0 or 1.
+#' Convert to presence / absence
+#' @param x a dataframe or vector with numeric values to be converted to 0 or 1.
+pa <- function(x){
   x[x > 0] <- 1
   x
 }
 
-make_name <- function(number, prefix) {
-  # function to create names by assigning a prefix and a number
-  # ARGS: prefix: character string type identifier (e.g. "hec" or "site")
-  #       number: individual identifier
+
+#' Create names by assigning a prefix and a number
+#'
+#' @param suffix character string or integer to be used in suffix of name
+#' @param prefix character string type identifier (e.g. "hec" or "site")
+#' (integer won't work to start character string name)
+make_name <- function(suffix, prefix) {
   name <- paste(prefix, number, sep = "")
   name
 }
@@ -37,12 +40,12 @@ make_name <- function(number, prefix) {
 #
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   library(grid)
-  
+
   # Make a list from the ... arguments and plotlist
   plots <- c(list(...), plotlist)
-  
+
   numPlots = length(plots)
-  
+
   # If layout is NULL, then use 'cols' to determine layout
   if (is.null(layout)) {
     # Make the panel
@@ -51,20 +54,20 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
     layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
                      ncol = cols, nrow = ceiling(numPlots/cols))
   }
-  
+
   if (numPlots==1) {
     print(plots[[1]])
-    
+
   } else {
     # Set up the page
     grid.newpage()
     pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
-    
+
     # Make each plot, in the correct location
     for (i in 1:numPlots) {
       # Get the i,j matrix positions of the regions that contain this subplot
       matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
-      
+
       print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
                                       layout.pos.col = matchidx$col))
     }

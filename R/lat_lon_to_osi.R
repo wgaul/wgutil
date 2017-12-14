@@ -45,6 +45,8 @@
 #' @param orig_crs A character string giving the proj4string specifying the
 #'   coordinate reference system that the original lat/lon coordinates are in.
 #' @param precision Integer giving the desired precision (in meters) of results
+#' @return a data frame with all rows and all columns of x, plus two additional
+#'   columns for eastings and northings. 
 lat_lon_to_osi <- function(x, lat = "Latitude", lon = "Longitude",
                            orig_crs = NULL, precision = 1) {
   if (!requireNamespace("sp", quietly = T)) {

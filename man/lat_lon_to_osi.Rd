@@ -18,6 +18,10 @@ coordinate reference system that the original lat/lon coordinates are in.}
 
 \item{precision}{Integer giving the desired precision (in meters) of results}
 }
+\value{
+a data frame with all rows and all columns of x, plus two additional
+  columns for eastings and northings.
+}
 \description{
 Convert latitude/longitude to eastings and northings on the Irish OSI TM75
 grid.
