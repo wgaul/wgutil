@@ -15,3 +15,7 @@ make_name(suffix, prefix)
 \description{
 Create names by assigning a prefix and a number
 }
+\examples{
+lapply(1:5, FUN = make_name, prefix = "species")
+
+}

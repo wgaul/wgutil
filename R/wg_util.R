@@ -1,11 +1,3 @@
-###################################
-## Utility functions that I frequently use
-##
-## author: Willson Gaul (and others as indicated)
-## created: 10 July 2017
-## last modified: 24 August 2017
-###################################
-
 #' Convert to presence / absence
 #' @param x a dataframe or vector with numeric values to be converted to 0 or 1.
 pa <- function(x){
@@ -15,6 +7,9 @@ pa <- function(x){
 
 
 #' Create names by assigning a prefix and a number
+#'
+#' @examples
+#' lapply(1:5, FUN = make_name, prefix = "species")
 #'
 #' @param suffix character string or integer to be used in suffix of name
 #' @param prefix character string type identifier (e.g. "hec" or "site")

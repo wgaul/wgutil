@@ -1,11 +1,3 @@
-#########################################
-## Function to convert WGS84 lat/long to OSI TM75 eastings/northings
-##
-## author: Willson Gaul
-## created: 3 November 2017
-## last modified: 10 Nov 2017
-#########################################
-
 #' Convert WGS84 lat/long to OSI TM75 eastings/northings.
 #'
 #' Convert latitude/longitude to eastings and northings on the Irish OSI TM75
@@ -46,7 +38,7 @@
 #'   coordinate reference system that the original lat/lon coordinates are in.
 #' @param precision Integer giving the desired precision (in meters) of results
 #' @return a data frame with all rows and all columns of x, plus two additional
-#'   columns for eastings and northings. 
+#'   columns for eastings and northings.
 lat_lon_to_osi <- function(x, lat = "Latitude", lon = "Longitude",
                            orig_crs = NULL, precision = 1) {
   if (!requireNamespace("sp", quietly = T)) {
