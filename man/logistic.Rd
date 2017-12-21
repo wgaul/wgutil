@@ -13,5 +13,6 @@ logistic(x)
 the logistic of x
 }
 \description{
-Calculate logistic of a number
+Calculates logistic(x) according to the formula:
+1 / (1 + exp(-x))
 }

@@ -13,5 +13,6 @@ logit(p)
 the logit of p
 }
 \description{
-Calculate the logit of a number
+#' Calculates logit(p) according to the formula:
+log(p / (1-p))
 }

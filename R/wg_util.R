@@ -16,7 +16,6 @@ pa <- function(x){
 #' @export
 #'
 #' @param p numeric value
-#'
 #' @return the logit of p
 logit <- function(p) {
   log(p / (1 - p))
@@ -30,7 +29,6 @@ logit <- function(p) {
 #' @export
 #'
 #' @param x a numeric value
-#'
 #' @return the logistic of x
 logistic <- function(x) {
   # ARGS: x: a linear combination of parameters (e.g. prob + coef*varValue)
