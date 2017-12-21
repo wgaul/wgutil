@@ -8,6 +8,35 @@ pa <- function(x){
   x
 }
 
+#' Calculate the logit of a number
+#'
+#'#' Calculates logit(p) according to the formula:
+#' log(p / (1-p))
+#'
+#' @export
+#'
+#' @param p numeric value
+#'
+#' @return the logit of p
+logit <- function(p) {
+  log(p / (1 - p))
+}
+
+#' Calculate logistic of a number
+#'
+#' Calculates logistic(x) according to the formula:
+#' 1 / (1 + exp(-x))
+#'
+#' @export
+#'
+#' @param x a numeric value
+#'
+#' @return the logistic of x
+logistic <- function(x) {
+  # ARGS: x: a linear combination of parameters (e.g. prob + coef*varValue)
+  1 / (1 + exp(-x))
+}
+
 #' Create names by assigning a prefix and a number
 #'
 #' @export
