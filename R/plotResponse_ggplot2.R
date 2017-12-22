@@ -29,6 +29,8 @@
 #' @return This function prints to the graphics device rather than returning an
 #'   object.
 plotResponse_ggplot2 <- function(df, pred_1, pred_2, resp, coefs) {
+  requireNamespace("gtable", quietly = TRUE)
+
   warning("This function doesn't print plots with exactly aligned axes.  This
           is meant only for rough vetting of predictor-response relationships.")
 
@@ -36,54 +38,55 @@ plotResponse_ggplot2 <- function(df, pred_1, pred_2, resp, coefs) {
   p2_col <- which(colnames(df) == pred_2)
   resp_col <- which(colnames(df) == resp)
 
-  mid <- ggplot(data = df, aes(x = df[, p1_col],
-                               y = df[, p2_col],
-                               color = df[, resp_col])) +
-    geom_point() +
-    theme_bw() +
-    labs(x = colnames(df)[p1_col],
-         y = colnames(df)[p2_col],
-         color = colnames(df)[resp_col]) +
-    theme(legend.position = "left")
+  mid <- ggplot2::ggplot(data = df, aes(x = df[, p1_col],
+                                        y = df[, p2_col],
+                                        color = df[, resp_col])) +
+    ggplot2::geom_point() +
+    ggplot2::theme_bw() +
+    ggplot2::labs(x = colnames(df)[p1_col],
+                  y = colnames(df)[p2_col],
+                  color = colnames(df)[resp_col]) +
+    ggplot2::theme(legend.position = "left")
 
 
-  ax1_resp_plot <- ggplot(
+  ax1_resp_plot <- ggplot2::ggplot(
     data = df,
     aes(x = df[, p1_col],
         y = logistic(
           coefs[which(names(coefs) == pred_1)][[1]][[1]] +
             coefs[which(names(coefs) == pred_1)][[1]][[2]]*df[, p1_col]+
-            coefs[which(names(coefs) == pred_1)][[1]][[3]]*(df[, p1_col]^2)))) +
-    geom_line() +
-    labs(x = colnames(df)[p1_col],
-         y = "Probability") +
-    theme_bw()
+            coefs[which(names(coefs) == pred_1)][[1]][[3]]*(
+              df[, p1_col]^2)))) +
+    ggplot2::geom_line() +
+    ggplot2::labs(x = colnames(df)[p1_col],
+                  y = "Probability") +
+    ggplot2::theme_bw()
 
-  ax2_resp_plot <- ggplot(
+  ax2_resp_plot <- ggplot2::ggplot(
     data = df,
     aes(x = logistic(
       coefs[which(names(coefs) == pred_2)][[1]][[1]] +
         coefs[which(names(coefs) == pred_2)][[1]][[2]]*df[, p2_col]+
         coefs[which(names(coefs) == pred_2)][[1]][[3]]*(df[, p2_col]^2)),
         y = df[, p2_col])) +
-    geom_line() +
-    labs(x = "Probability",
-         y = colnames(df)[p2_col]) +
-    theme_bw()
+    ggplot2::geom_line() +
+    ggplot2::labs(x = "Probability",
+                  y = colnames(df)[p2_col]) +
+    ggplot2::theme_bw()
 
-  mid_g <- ggplotGrob(mid)
+  mid_g <- ggplot2::ggplotGrob(mid)
   panel_id <- mid_g$layout[mid_g$layout$name == "panel", c("t", "l", "b", "r")]
-  mid_g <- gtable_add_cols(mid_g, unit(1.25, "in"))
+  mid_g <- gtable::gtable_add_cols(mid_g, unit(1.25, "in"))
 
-  mid_g <- gtable_add_grob(mid_g,
-                           ggplotGrob(ax2_resp_plot),
-                           t = panel_id$t, l = ncol(mid_g),
-                           b = panel_id$b + 4)
+  mid_g <- gtable::gtable_add_grob(mid_g,
+                                   ggplot2::ggplotGrob(ax2_resp_plot),
+                                   t = panel_id$t, l = ncol(mid_g),
+                                   b = panel_id$b + 4)
 
-  mid_g <- gtable_add_rows(mid_g, unit(1.25, "in"), 0)
-  mid_g <- gtable_add_grob(mid_g,
-                           ggplotGrob(ax1_resp_plot),
+  mid_g <- gtable::gtable_add_rows(mid_g, unit(1.25, "in"), 0)
+  mid_g <- gtable::gtable_add_grob(mid_g,
+                           ggplot2::ggplotGrob(ax1_resp_plot),
                            t = 1, l = panel_id$l-3, r = panel_id$r)
-  grid.newpage()
-  grid.draw(mid_g)
+  grid::grid.newpage()
+  grid::grid.draw(mid_g)
 }
