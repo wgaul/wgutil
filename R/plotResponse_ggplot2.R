@@ -26,6 +26,10 @@
 #'   degree polynomials for each of the
 #'   predictor variables. The name is the same as the name of the predictor
 #'   variable, and the values are numeric coefficients.
+#'  @param axis1_offset - the value that is subtracted from the values in the
+#'   raster of the first predictor before squaring that predictor.
+#'  @param axis2_offset - the value subtracted from the values in the raster of
+#'   the second predictor before squaring that predictor.
 #' @return This function prints to the graphics device rather than returning an
 #'   object.
 plotResponse_ggplot2 <- function(df, pred_1, pred_2, resp, coefs) {
