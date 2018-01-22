@@ -78,7 +78,8 @@ plotResponse_ggplot2 <- function(df, pred_1, pred_2, resp, coefs,
     ggplot2::geom_line() +
     ggplot2::labs(x = "Probability",
                   y = colnames(df)[p2_col]) +
-    ggplot2::theme_bw()
+    ggplot2::theme_bw() +
+    coord_flip()
 
   mid_g <- ggplot2::ggplotGrob(mid)
   panel_id <- mid_g$layout[mid_g$layout$name == "panel", c("t", "l", "b", "r")]
