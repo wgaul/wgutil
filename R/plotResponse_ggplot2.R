@@ -14,6 +14,7 @@
 #'
 #' @examples
 #'
+#' @param sp_name character string giving the species name
 #' @param df data frame holding values for all predictor variables, principal
 #'   components, and responses (logit(p) and probability)
 #'   for each site in the raster
@@ -32,7 +33,7 @@
 #'  the second predictor before squaring that predictor.
 #' @return This function prints to the graphics device rather than returning an
 #'   object.
-plotResponse_ggplot2 <- function(df, pred_1, pred_2, resp, coefs,
+plotResponse_ggplot2 <- function(sp_name, df, pred_1, pred_2, resp, coefs,
                                  axis1_offset = 0, axis2_offset = 0) {
   requireNamespace("gtable", quietly = TRUE)
 
@@ -51,6 +52,7 @@ plotResponse_ggplot2 <- function(df, pred_1, pred_2, resp, coefs,
     ggplot2::labs(x = colnames(df)[p1_col],
                   y = colnames(df)[p2_col],
                   color = colnames(df)[resp_col]) +
+    ggplot2::ggtitle(sp_name) +
     ggplot2::theme(legend.position = "left")
 
 
@@ -61,7 +63,7 @@ plotResponse_ggplot2 <- function(df, pred_1, pred_2, resp, coefs,
           coefs[which(names(coefs) == pred_1)][[1]][[1]] +
             coefs[which(names(coefs) == pred_1)][[1]][[2]]*df[, p1_col]+
             coefs[which(names(coefs) == pred_1)][[1]][[3]]*(
-              (df[, p1_col] + axis1_offset)^2)))) +
+              -((df[, p1_col] + axis1_offset)^2))))) +
     ggplot2::geom_line() +
     ggplot2::labs(x = colnames(df)[p1_col],
                   y = "Probability") +
@@ -74,10 +76,10 @@ plotResponse_ggplot2 <- function(df, pred_1, pred_2, resp, coefs,
       coefs[which(names(coefs) == pred_2)][[1]][[1]] +
         coefs[which(names(coefs) == pred_2)][[1]][[2]]*df[, p2_col]+
         coefs[which(names(coefs) == pred_2)][[1]][[3]]*(
-          (df[, p2_col] + axis2_offset)^2)))) +
+          -((df[, p2_col] + axis2_offset)^2))))) +
     ggplot2::geom_line() +
-    ggplot2::labs(x = "Probability",
-                  y = colnames(df)[p2_col]) +
+    ggplot2::labs(x = colnames(df)[p2_col],
+                  y = "Probability") +
     ggplot2::theme_bw() +
     coord_flip()
 

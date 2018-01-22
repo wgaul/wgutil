@@ -5,10 +5,12 @@
 \title{Plot species probability of occurrence along with the response curve for
 each of 2 predictor variables in marginal plots.  This}
 \usage{
-plotResponse_ggplot2(df, pred_1, pred_2, resp, coefs, axis1_offset = 0,
-  axis2_offset = 0)
+plotResponse_ggplot2(sp_name, df, pred_1, pred_2, resp, coefs,
+  axis1_offset = 0, axis2_offset = 0)
 }
 \arguments{
+\item{sp_name}{character string giving the species name}
+
 \item{df}{data frame holding values for all predictor variables, principal
 components, and responses (logit(p) and probability)
 for each site in the raster}
