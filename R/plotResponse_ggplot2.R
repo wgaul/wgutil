@@ -69,11 +69,12 @@ plotResponse_ggplot2 <- function(df, pred_1, pred_2, resp, coefs,
 
   ax2_resp_plot <- ggplot2::ggplot(
     data = df,
-    aes(x = logistic(
+    aes(x = df[, p2_col],
+        y = logistic(
       coefs[which(names(coefs) == pred_2)][[1]][[1]] +
         coefs[which(names(coefs) == pred_2)][[1]][[2]]*df[, p2_col]+
-        coefs[which(names(coefs) == pred_2)][[1]][[3]]*(df[, p2_col]^2)),
-        y = df[, p2_col])) +
+        coefs[which(names(coefs) == pred_2)][[1]][[3]]*(
+          (df[, p2_col] + axis2_offset)^2)))) +
     ggplot2::geom_line() +
     ggplot2::labs(x = "Probability",
                   y = colnames(df)[p2_col]) +
