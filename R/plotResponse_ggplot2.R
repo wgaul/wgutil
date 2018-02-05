@@ -27,14 +27,9 @@
 #'   degree polynomials for each of the
 #'   predictor variables. The name is the same as the name of the predictor
 #'   variable, and the values are numeric coefficients.
-#' @param axis1_offset - the value that is subtracted from the values in the
-#'  raster of the first predictor before squaring that predictor.
-#' @param axis2_offset - the value subtracted from the values in the raster of
-#'  the second predictor before squaring that predictor.
 #' @return This function prints to the graphics device rather than returning an
 #'   object.
-plotResponse_ggplot2 <- function(sp_name, df, pred_1, pred_2, resp, coefs,
-                                 axis1_offset = 0, axis2_offset = 0) {
+plotResponse_ggplot2 <- function(sp_name, df, pred_1, pred_2, resp, coefs) {
   requireNamespace("gtable", quietly = TRUE)
 
   warning("This function doesn't print plots with exactly aligned axes.  This
@@ -62,8 +57,7 @@ plotResponse_ggplot2 <- function(sp_name, df, pred_1, pred_2, resp, coefs,
         y = logistic(
           coefs[which(names(coefs) == pred_1)][[1]][[1]] +
             coefs[which(names(coefs) == pred_1)][[1]][[2]]*df[, p1_col]+
-            coefs[which(names(coefs) == pred_1)][[1]][[3]]*(
-              -((df[, p1_col] + axis1_offset)^2))))) +
+            coefs[which(names(coefs) == pred_1)][[1]][[3]]*(df[, p1_col]^2)))) +
     ggplot2::geom_line() +
     ggplot2::labs(x = colnames(df)[p1_col],
                   y = "Probability") +
@@ -75,8 +69,7 @@ plotResponse_ggplot2 <- function(sp_name, df, pred_1, pred_2, resp, coefs,
         y = logistic(
       coefs[which(names(coefs) == pred_2)][[1]][[1]] +
         coefs[which(names(coefs) == pred_2)][[1]][[2]]*df[, p2_col]+
-        coefs[which(names(coefs) == pred_2)][[1]][[3]]*(
-          -((df[, p2_col] + axis2_offset)^2))))) +
+        coefs[which(names(coefs) == pred_2)][[1]][[3]]*(df[, p2_col]^2)))) +
     ggplot2::geom_line() +
     ggplot2::labs(x = colnames(df)[p2_col],
                   y = "Probability") +
