@@ -103,3 +103,26 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   }
 }
 
+#' Calculate the vertex of a parabola defined by a quadratic function
+#'
+#' @description Calculates the vertex for f(x) = ax^2 + bx + c according to the
+#'  formula:
+#'
+#'  vertex x = -b/2a
+#'
+#'  vertex y = f(vertex x)
+#'
+#' @export
+#'
+#' @param a numeric coefficient for the squared term
+#' @param b numeric coefficient for the 1st order term
+#' @param c numeric intercept
+#' @return named vector with the x and y coordinates of the vertex
+calc_vertex <- function(a, b, c) {
+  h <- -b/(2*a)
+  f = function(x, af = a, bf = b, cf = c) {af*(x^2) + bf*x + cf}
+  vert_y <- f(h)
+  vert <- c(h, vert_y)
+  names(vert) <- c("x", "y")
+  vert
+}

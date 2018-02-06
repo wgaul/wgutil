@@ -5,8 +5,9 @@
 #'
 #' This function calls \code{\link[sp]{spTransform}} to convert
 #' latitude/longitude coordinates from WGS84 or some other specified CRS to the
-#' Irish OSI TM75 grid.  The proj4string for the CRS of the original coordinates
-#' must be specified in \code{orig_crs}. (e.g. "+init=epsg:4326" for WGS 84).
+#' Irish OSI TM75 grid.  The proj4string for the CRS of the original
+#' coordinates must be specified in \code{orig_crs}.
+#' (e.g. "+init=epsg:4326" for WGS 84).
 #'
 #' Use \code{precision_meters} to find the hectad or 1km block in which the
 #' original coordinates lie.  For example, \code{precision_meters = 1} gives

@@ -1,5 +1,7 @@
 #' Convert a grid ref (letter form) of any precision to hectad (3 characters)
 #'
+#' @export
+#'
 #' @param gr character vector giving the grid references (e.g. "B1641", "B161415)
 #'
 gridref_to_hec <- function(gr = NULL) {
