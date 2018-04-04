@@ -4,6 +4,7 @@
 #' data.
 #'
 #' TODO: figure out difference b/t pointwise and complete envelopes
+#'
 #' TODO: define a plot.env.envelope method
 #'
 #' @seealso \code{\link[ggplot2]{geom_density}}
@@ -27,6 +28,8 @@
 #' lines(result$low_bnd ~ result$x, col = "blue")
 #' lines(result$hi_bnd ~ result$x, col = "blue")
 #'
+#' @importFrom magrittr "%>%"
+#'
 #' @param x a numeric vector of observed values
 #' @param upper a numeric value giving the desired upper quantile boundary (0
 #'   to 1)
@@ -36,30 +39,33 @@
 #'   pointwise quantiles.  This is passed to \code{\link[ggplot2]{geom_density}}.
 #' @param type character vector indicating whether to produce envelope values
 #'   as a density ("density") or expected value ("count")
-#' @return an data frame of class env.envelope with 3 columns holding the
+#' @return an data frame of class env.envelope with three columns holding the
 #'   observed values, the upper envelope values, and the lower envelope values
 quantile_envelope <- function(x, upper = 0.975, lower = 0.025,
                                   n.eval.points, type = "density") {
+  requireNamespace("tidyverse", quietly = TRUE)
 
   # gather all datasets (observed and simulated/resampled) for use in ggplot2
-  long_x <- gather(x, key = "dataset", value = "value")
+  long_x <- tidyr::gather(x, key = "dataset", value = "value")
 
   ## calculate probability density functions for all datasets using ggplot2
   get_dens <- function(x, n.eval.points = n.eval.points) {
-    gg <- ggplot(data = x, aes(value, group = dataset)) +
-      geom_density(n = n.eval.points)
-    ggplot_build(gg) # return ggplot object including points used for plot
+    gg <- ggplot2::ggplot(data = x, ggplot2::aes(value, group = dataset)) +
+      ggplot2::geom_density(n = n.eval.points)
+    ggplot2::ggplot_build(gg) # return ggplot object including points used for plot
   }
 
   gg_dens <- get_dens(long_x, n.eval.points = n.eval.points)
 
   if(type == "density") {
-    result_df <- select(gg_dens$data[[1]], c(x, density, group)) %>%
-      spread(key = group, value = density)
+    result_df <- dplyr::select(gg_dens$data[[1]],
+                               c(x, density, group)) %>%
+      tidyr::spread(key = group, value = density)
   }
   if(type == "count") {
-    result_df <- select(gg_dens$data[[1]], c(x, count, group)) %>%
-      spread(key = group, value = count)
+    result_df <- dplyr::select(gg_dens$data[[1]],
+                               c(x, count, group)) %>%
+      tidyr::spread(key = group, value = count)
   }
 
   # calculate quantiles
@@ -69,7 +75,7 @@ quantile_envelope <- function(x, upper = 0.975, lower = 0.025,
                             probs = upper)
   colnames(result_df)[which(colnames(result_df) == "1")] <- "observed"
 
-  result_df <- select(result_df, c(x, observed, low_bnd, hi_bnd))
+  result_df <- dplyr::select(result_df, c(x, observed, low_bnd, hi_bnd))
 
   class(result_df) <- "env.envelope"
   result_df
