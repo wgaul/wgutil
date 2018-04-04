@@ -1,57 +1,54 @@
 #' Calculate quantile envelopes
 #'
+#' Calculate the pointwise quantile envelopes for comparison to observed
+#' data.
+#'
+#' TODO: figure out difference b/t pointwise and complete envelopes
+#' TODO: define a plot.env.envelope method
+#'
 #' @seealso \code{\link[ggplot2]{geom_density}}
 #'
 #' @export
 #'
+#' @examples
+#' # make some example data
+#' obs <- c(1:5, 7:8, 11:12, 19:25)
+#' dat <- data.frame(observed = obs, s1 = sample(obs, replace = T),
+#'                    s2 = sample(obs, replace = T),
+#'                    s3 = sample(obs, replace = T),
+#'                    s4 = sample(obs, replace = T),
+#'                    s5 = sample(obs, replace = T))
+#' # calculate the pointwise 95% quantile envelopes
+#' result <- quantile_envelope(x = dat, n.eval.points = 20,
+#'                             upper = 0.975, lower = 0.025)
+#' plot(result$observed ~ result$x, type = "l", col = "black",
+#' ylim = c(min(result$low_bnd), max(result$hi_bnd)),
+#' main = "Quantile Envelope", ylab = "Density")
+#' lines(result$low_bnd ~ result$x, col = "blue")
+#' lines(result$hi_bnd ~ result$x, col = "blue")
+#'
 #' @param x a numeric vector of observed values
-#' @param upper a numeric value giving the desired upper quantile boundary (0 to 1)
-#' @param lower a numeric value giving the desired lower quantile boundary (0 to 1)
-#' @param n.eval.points integer giving the number of points at which to compute pointwise quantiles.  This is passed to \code{\link[ggplot2]{geom_density}}.
-#' @param type character vector indicating whether to produce envelope values as a density ("density") or expected value ("count")
-
-#################################
-## Environmental Space simulation envelopes
-##
-## TODO:  - figure out difference b/t pointwise and complete envelopes
-##        - define a plot.env.envelope
-##
-## author: Willson Gaul
-## created: 4 April 2018
-## last modified: 4 April 2018
-################################
-
-## overall structure:
-# - bin continuous values into n breaks/bins
-# - make a column with the count of number of points in each bin
-# - have a column for the observed pattern and for each simulated pattern
-# - find the row-wise percentiles to find the upper and lower percentile
-#     boundaries for each bin
-# - make a column/vector of those bin-wise percentile values and plot it
-#
-
-## make some test data
-# obs <- c(1:5, 7:8, 11:12, 19:25)
-#
-# test <- data.frame(obs = obs, s1 = sample(obs, replace = T),
-#                    s2 = sample(obs, replace = T), s3 = sample(obs, replace = T),
-#                    s4 = sample(obs, replace = T), s5 = sample(obs, replace = T))
-
+#' @param upper a numeric value giving the desired upper quantile boundary (0
+#'   to 1)
+#' @param lower a numeric value giving the desired lower quantile boundary (0
+#'   to 1)
+#' @param n.eval.points integer giving the number of points at which to compute
+#'   pointwise quantiles.  This is passed to \code{\link[ggplot2]{geom_density}}.
+#' @param type character vector indicating whether to produce envelope values
+#'   as a density ("density") or expected value ("count")
+#' @return an data frame of class env.envelope with 3 columns holding the
+#'   observed values, the upper envelope values, and the lower envelope values
 quantile_envelope <- function(x, upper = 0.975, lower = 0.025,
                                   n.eval.points, type = "density") {
-  # Value: an env.envelope data frame with 3 columns - the observed environmental
-  #         values, the upper envelope values, and the lower envelope values
 
-  # browser()
-
-
+  # gather all datasets (observed and simulated/resampled) for use in ggplot2
   long_x <- gather(x, key = "dataset", value = "value")
 
-  ## calculate probability density functions for all datasets
+  ## calculate probability density functions for all datasets using ggplot2
   get_dens <- function(x, n.eval.points = n.eval.points) {
     gg <- ggplot(data = x, aes(value, group = dataset)) +
       geom_density(n = n.eval.points)
-    ggplot_build(gg) # return points used for plot
+    ggplot_build(gg) # return ggplot object including points used for plot
   }
 
   gg_dens <- get_dens(long_x, n.eval.points = n.eval.points)
@@ -65,6 +62,7 @@ quantile_envelope <- function(x, upper = 0.975, lower = 0.025,
       spread(key = group, value = count)
   }
 
+  # calculate quantiles
   result_df$low_bnd <- apply(result_df[, -1], MARGIN = 1, FUN = quantile,
                              probs = lower)
   result_df$hi_bnd <- apply(result_df[, -1], MARGIN = 1, FUN = quantile,
@@ -73,27 +71,6 @@ quantile_envelope <- function(x, upper = 0.975, lower = 0.025,
 
   result_df <- select(result_df, c(x, observed, low_bnd, hi_bnd))
 
-  ## gather for use in ggplot
-  # result_df <- select(result_df, c(x, observed, low_bnd, hi_bnd)) %>%
-  #   gather(key = "dataset", value = density, observed, low_bnd, hi_bnd)
-
   class(result_df) <- "env.envelope"
   result_df
 }
-
-## for testing
-# result <- environmental_envelope(x = test, n.eval.points = 20)
-
-
-
-## in base plot
-## TODO: define a plot.env.envelope method
-plot(result$observed ~ result$x, type = "l", col = "black",
-     ylim = c(min(result$low_bnd), max(result$hi_bnd)),
-     main = "Quantile Envelope", ylab = "Density")
-lines(result$low_bnd ~ result$x, col = "blue")
-lines(result$hi_bnd ~ result$x, col = "blue")
-
-## in ggplot2
-# ggplot(result, aes(x = x, y = density, color = dataset)) +
-#   geom_line()
