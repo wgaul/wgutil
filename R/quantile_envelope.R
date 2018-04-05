@@ -39,7 +39,7 @@
 #'   pointwise quantiles.  This is passed to \code{\link[ggplot2]{geom_density}}.
 #' @param type character vector indicating whether to produce envelope values
 #'   as a density ("density") or expected value ("count")
-#' @return an data frame of class env.envelope with three columns holding the
+#' @return an data frame with three columns holding the
 #'   observed values, the upper envelope values, and the lower envelope values
 quantile_envelope <- function(x, upper = 0.975, lower = 0.025,
                                   n.eval.points, type = "density") {
@@ -76,7 +76,5 @@ quantile_envelope <- function(x, upper = 0.975, lower = 0.025,
   colnames(result_df)[which(colnames(result_df) == "1")] <- "observed"
 
   result_df <- dplyr::select(result_df, c(x, observed, low_bnd, hi_bnd))
-
-  class(result_df) <- "env.envelope"
   result_df
 }

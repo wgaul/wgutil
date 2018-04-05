@@ -23,7 +23,7 @@ pointwise quantiles.  This is passed to \code{\link[ggplot2]{geom_density}}.}
 as a density ("density") or expected value ("count")}
 }
 \value{
-an data frame of class env.envelope with three columns holding the
+an data frame with three columns holding the
   observed values, the upper envelope values, and the lower envelope values
 }
 \description{
