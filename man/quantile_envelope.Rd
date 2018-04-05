@@ -8,7 +8,9 @@ quantile_envelope(x, upper = 0.975, lower = 0.025, n.eval.points,
   type = "density")
 }
 \arguments{
-\item{x}{a numeric vector of observed values}
+\item{x}{a dataframe with the first column giving the observed values (must
+be named "observed") and a column for each replicate to be used for
+quantile calculation}
 
 \item{upper}{a numeric value giving the desired upper quantile boundary (0
 to 1)}

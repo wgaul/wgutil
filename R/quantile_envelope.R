@@ -30,7 +30,9 @@
 #'
 #' @importFrom magrittr "%>%"
 #'
-#' @param x a numeric vector of observed values
+#' @param x a dataframe with the first column giving the observed values (must
+#'   be named "observed") and a column for each replicate to be used for
+#'   quantile calculation
 #' @param upper a numeric value giving the desired upper quantile boundary (0
 #'   to 1)
 #' @param lower a numeric value giving the desired lower quantile boundary (0
@@ -44,6 +46,8 @@
 quantile_envelope <- function(x, upper = 0.975, lower = 0.025,
                                   n.eval.points, type = "density") {
   requireNamespace("tidyverse", quietly = TRUE)
+
+  if(colnames(x)[1] != "observed") stop("First column must be named 'observed' and must contain the observed values.")
 
   # gather all datasets (observed and simulated/resampled) for use in ggplot2
   long_x <- tidyr::gather(x, key = "dataset", value = "value")
