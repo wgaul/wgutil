@@ -47,6 +47,8 @@ quantile_envelope <- function(x, upper = 0.975, lower = 0.025,
                                   n.eval.points, type = "density") {
   requireNamespace("tidyverse", quietly = TRUE)
 
+  browser()
+
   if(!("observed" %in% colnames(x))) stop("x must include a column named 'observed' and containing the observed values.")
   if(colnames(x)[1] != "observed") {
     x <- x[, c(which(colnames(x) == "observed"),
@@ -77,11 +79,15 @@ quantile_envelope <- function(x, upper = 0.975, lower = 0.025,
   }
 
   # calculate quantiles
-  result_df$low_bnd <- apply(result_df[, -1], MARGIN = 1, FUN = quantile,
-                             probs = lower)
-  result_df$hi_bnd <- apply(result_df[, -1], MARGIN = 1, FUN = quantile,
-                            probs = upper)
   colnames(result_df)[which(colnames(result_df) == "1")] <- "observed"
+  result_df$low_bnd <- apply(
+    result_df[, -(which(colnames(result_df) %in% c("x", "observed")))],
+    MARGIN = 1, FUN = quantile,
+    probs = lower)
+  result_df$hi_bnd <- apply(
+    result_df[, -(which(colnames(result_df) %in% c("x", "observed")))],
+    MARGIN = 1, FUN = quantile,
+    probs = upper)
 
   result_df <- dplyr::select(result_df, c(x, observed, low_bnd, hi_bnd))
   result_df
