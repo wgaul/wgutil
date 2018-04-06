@@ -8,9 +8,9 @@ quantile_envelope(x, upper = 0.975, lower = 0.025, n.eval.points,
   type = "density")
 }
 \arguments{
-\item{x}{a dataframe with the first column giving the observed values (must
-be named "observed") and a column for each replicate to be used for
-quantile calculation}
+\item{x}{a dataframe with the observed values (column must be named
+"observed") and a column for each replicate to be used for quantile
+calculation}
 
 \item{upper}{a numeric value giving the desired upper quantile boundary (0
 to 1)}
@@ -25,7 +25,7 @@ pointwise quantiles.  This is passed to \code{\link[ggplot2]{geom_density}}.}
 as a density ("density") or expected value ("count")}
 }
 \value{
-an data frame with three columns holding the
+a data frame with three columns holding the
   observed values, the upper envelope values, and the lower envelope values
 }
 \description{
