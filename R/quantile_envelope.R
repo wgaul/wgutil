@@ -47,8 +47,6 @@ quantile_envelope <- function(x, upper = 0.975, lower = 0.025,
                                   n.eval.points, type = "density") {
   requireNamespace("tidyverse", quietly = TRUE)
 
-  browser()
-
   if(!("observed" %in% colnames(x))) stop("x must include a column named 'observed' and containing the observed values.")
   if(colnames(x)[1] != "observed") {
     x <- x[, c(which(colnames(x) == "observed"),
