@@ -4,8 +4,8 @@
 \alias{lat_lon_to_osi}
 \title{Convert WGS84 lat/long to OSI TM75 eastings/northings.}
 \usage{
-lat_lon_to_osi(x, lat = "Latitude", lon = "Longitude", orig_crs = NULL,
-  precision = 1)
+lat_lon_to_osi(x, lat = "Latitude", lon = "Longitude",
+  orig_crs = NULL, precision = 1)
 }
 \arguments{
 \item{x}{A data frame containing latitude and longitude coordinates.}

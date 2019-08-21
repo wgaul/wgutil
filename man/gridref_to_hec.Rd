@@ -10,5 +10,11 @@ gridref_to_hec(gr = NULL)
 \item{gr}{character vector giving the grid references (e.g. "B1641", "B161415)}
 }
 \description{
-Convert a grid ref (letter form) of any precision to hectad (3 characters)
+Convert Irish OSI grid references to hectad codes.  I'm not sure if it
+works for British grid references, mainly because I can't remember what the
+letters indicate in the British grid references.
+}
+\details{
+Note this function contains a for loop and so can be slow for long vectors.
+Eventually I might try to use Rcpp to speed this up.
 }
