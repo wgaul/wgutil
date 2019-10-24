@@ -18,11 +18,20 @@
 #' @export
 #'
 #' @examples
+#' dat <- c(1, 5, 3, 2, 2, 2, 1) # data with uneven values
+#' dat2 <- c(5, 5, 4, 2, 2, 2, 1) # data with more even values
+#' simpson_even(dat)
+#' simpson_even(dat2) # Simpson's evenness value is higher for more even data
+#'
+#' # Simpson's evenness is insensitive to number of observations
+#' identical(simpson_even(dat), simpson_even(c(dat, dat)))
 #'
 #' @param x a vector of abundances or some other numbers for which evenness is to be measured
+#' @param na.rm if TRUE, NA values will be removed before computing Simpson's evenness
 #' @return the Simpson's evenness value for x
 
-simpson_even <- function(x) {
+simpson_even <- function(x, na.rm = FALSE) {
+  if(na.rm) x <- x[!is.na(x)]
   S = length(x)
   x_p = x/sum(x)
   simpsons_d = 1 / sum(sapply(x_p, function(x) {x^2}))

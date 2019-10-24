@@ -4,10 +4,12 @@
 \alias{simpson_even}
 \title{Simpson's evenness}
 \usage{
-simpson_even(x)
+simpson_even(x, na.rm = FALSE)
 }
 \arguments{
 \item{x}{a vector of abundances or some other numbers for which evenness is to be measured}
+
+\item{na.rm}{if TRUE, NA values will be removed before computing Simpson's evenness}
 }
 \value{
 the Simpson's evenness value for x
@@ -30,5 +32,12 @@ where S is number of observed species (or number of hectads) and p_i is the
 proportion of abundance for species i (p_i = N_i/N)
 }
 \examples{
+dat <- c(1, 5, 3, 2, 2, 2, 1) # data with uneven values
+dat2 <- c(5, 5, 4, 2, 2, 2, 1) # data with more even values
+simpson_even(dat)
+simpson_even(dat2) # simpson's evenness value is higher for more even data
+
+# Simpson's evenness is insensitive to number of observations
+identical(simpson_even(dat), simpson_even(c(dat, dat)))
 
 }
