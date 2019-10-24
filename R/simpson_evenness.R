@@ -26,6 +26,10 @@
 #' # Simpson's evenness is insensitive to number of observations
 #' identical(simpson_even(dat), simpson_even(c(dat, dat)))
 #'
+#' @references Magurran, Anne E. and Brian J. McGill.  2011.  \emph{Biological
+#' Diversity: Frontiers in Measurement and Assessment}.  Oxford University Press.
+#'
+#'
 #' @param x a vector of abundances or some other numbers for which evenness is to be measured
 #' @param na.rm if TRUE, NA values will be removed before computing Simpson's evenness
 #' @return the Simpson's evenness value for x
