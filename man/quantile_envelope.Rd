@@ -4,8 +4,13 @@
 \alias{quantile_envelope}
 \title{Calculate quantile envelopes}
 \usage{
-quantile_envelope(x, upper = 0.975, lower = 0.025, n.eval.points,
-  type = "density")
+quantile_envelope(
+  x,
+  upper = 0.975,
+  lower = 0.025,
+  n.eval.points,
+  type = "density"
+)
 }
 \arguments{
 \item{x}{a dataframe with the observed values (column must be named

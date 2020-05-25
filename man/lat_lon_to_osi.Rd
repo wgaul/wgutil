@@ -4,23 +4,23 @@
 \alias{lat_lon_to_osi}
 \title{Simpson's, Shannon, and Camargo evenness}
 \usage{
-lat_lon_to_osi(x, lat = "Latitude", lon = "Longitude",
-  orig_crs = NULL, precision = 1)
+lat_lon_to_osi(
+  x,
+  lat = "Latitude",
+  lon = "Longitude",
+  orig_crs = NULL,
+  precision = 1
+)
 
-lat_lon_to_osi(x, lat = "Latitude", lon = "Longitude",
-  orig_crs = NULL, precision = 1)
+lat_lon_to_osi(
+  x,
+  lat = "Latitude",
+  lon = "Longitude",
+  orig_crs = NULL,
+  precision = 1
+)
 }
 \arguments{
-\item{x}{A data frame containing latitude and longitude coordinates.}
-
-\item{lat, lon}{Character string giving the names of the latitude and
-longitude columns.}
-
-\item{orig_crs}{A character string giving the proj4string specifying the
-coordinate reference system that the original lat/lon coordinates are in.}
-
-\item{precision}{Integer giving the desired precision (in meters) of results}
-
 \item{x}{A data frame containing latitude and longitude coordinates.}
 
 \item{lat, lon}{Character string giving the names of the latitude and
